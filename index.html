@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Berkeley rent map</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+    <h1>Berkeley rent map</h1>
+
+    <hr>
+
+
+    <div class="col-md-12" id="intro">
+      Please enter your rent information below.
+    </div>
+
+
+
+    <form class="form-inline" id="residenceForm">
+      
+      <div class="col-md-4 form-group">
+        <label for="address">Address: &nbsp; </label>
+        <div class="input-group">
+        <input class="form-control" type="text" name="address" id="address" placeholder="1234 Example Avenue" required>
+        <div class="input-group-addon">Berkeley, CA</div>
+      </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label for="rent">Rent: &nbsp;</label>
+
+        <div class="col-md-9 input-group">
+          <div class="input-group-addon">$</div>
+          <input class="form-control" type="number" name="rent" id="rent" min="0" placeholder="600"required>
+          <div class="input-group-addon">per month</div>
+        </div>
+      </div>
+
+      <div class="col-md-2 form-group ">
+        <label for="occupancy">Type: &nbsp;</label>
+
+        <select class="form-control" form="residenceForm" name="occupancy" id="occupancy" required>
+          <option value="single">Single</option>
+          <option value="double">Double</option>
+          <option value="triple">Triple</option>
+          <option value="other">Other</option>
+        </select>
+
+      </div>
+
+      <div class="col-md-2 form-group">
+        <input class="btn btn-default" type="submit" value="Submit">
+      </div>
+
+    </form>
+
+    <hr>
+
+    <div class="col-md-12" id="map"></div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <script type="text/javascript" src="js/map.js"></script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+    
+  </body>
+</html>
