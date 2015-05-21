@@ -26,33 +26,32 @@
     <hr>
 
 
-    <div class="col-md-12" id="intro">
-      Please enter your rent information below.
-    </div>
+    <div class="col-md-4">
+      <p id="intro">Please enter your rent information below.</p>
+      <br />
 
-
-
-    <form class="form-inline" id="residenceForm">
+    <form id="residenceForm">
       
-      <div class="col-md-4 form-group">
+      <div class="form-group">
         <label for="address">Address: &nbsp; </label>
-        <div class="input-group">
+
         <input class="form-control" type="text" name="address" id="address" placeholder="1234 Example Avenue" required>
-        <div class="input-group-addon">Berkeley, CA</div>
-      </div>
+
       </div>
 
-      <div class="col-md-4 form-group">
+      <div class="form-group">
         <label for="rent">Rent: &nbsp;</label>
 
-        <div class="col-md-9 input-group">
+        <div class=" input-group">
           <div class="input-group-addon">$</div>
           <input class="form-control" type="number" name="rent" id="rent" min="0" placeholder="600"required>
           <div class="input-group-addon">per month</div>
         </div>
+        <br />
+        <p><em>Please estimate the monthly price of rent and utilities, excluding board.</em></p>
       </div>
 
-      <div class="col-md-2 form-group ">
+      <div class="form-group ">
         <label for="occupancy">Type: &nbsp;</label>
 
         <select class="form-control" form="residenceForm" name="occupancy" id="occupancy" required>
@@ -64,15 +63,17 @@
 
       </div>
 
-      <div class="col-md-2 form-group">
+      <br />
+
+      <div class=" form-group">
         <input class="btn btn-default" type="submit" value="Submit">
       </div>
 
     </form>
 
-    <hr>
+  </div>
 
-    <div class="col-md-12" id="map"></div>
+    <div class="col-md-7 col-md-offset-1" id="map"></div>
 
     </div>
 
@@ -82,10 +83,9 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
     <script type="text/javascript" src="js/map.js"></script>
-
     <script type="text/javascript" src="js/app.js"></script>
     
   </body>

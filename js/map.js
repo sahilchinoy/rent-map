@@ -1,12 +1,24 @@
-var map = L.map('map').setView([37.862882, -122.254616], 14);
 
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-    maxZoom: 18,
-    detectRetina: true,
-}).addTo(map);
+var mapOptions = {
+  zoom: 15,
+  center: new google.maps.LatLng(37.864649, -122.261203),
+  mapTypeId: google.maps.MapTypeId.ROAD
+};
+var map = new google.maps.Map(document.getElementById("map"),
+    mapOptions);
 
 
+var colors = ['rgb(255,237,160)','rgb(254,178,76)','rgb(240,59,32)'];
+
+var colorScale = function(rent) {
+	if (rent > 0 && rent < 600) {
+		return colors[0];
+	} else if (rent >= 600 && rent < 900) {
+		return colors[1];
+	} else {
+		return colors[2];
+	}
+}
 
 Parse.initialize("sE7D0GSTTE34WwliYKhme6b2Xo2aINTcgSVdgO4E", "7EhupRm9X7M1G9Grqk3cEzbMm7EpJgZzDcbIxMUP");
 var Residence = Parse.Object.extend("Residence");
@@ -14,9 +26,12 @@ var Residence = Parse.Object.extend("Residence");
 var generateMarkers = function(residences) {
 
 	var markers = new Array();
+	var info = new google.maps.InfoWindow({
+		content: ''
+	});
 
 	for (var i=0; i < residences.length; i++) {
-
+		
 		var data = new Array();
 
 		data.rent = residences[i].attributes.rent;
@@ -27,9 +42,20 @@ var generateMarkers = function(residences) {
 		formattedAddress = String(residences[i].attributes.formattedAddress);
 		data.address = formattedAddress.split(',')[0];
 
-		markers[i] = L.marker([data.lat, data.lng])
-			.addTo(map)
-			.bindPopup(popupText(data));
+		var center = new google.maps.LatLng(data.lat,data.lng);
+
+		markers[i] = new google.maps.Marker({
+			position: center,
+			map: map,
+			title: data.address,
+			html: popupText(data)
+		});
+
+		google.maps.event.addListener(markers[i], 'click', function() {
+			info.setContent(this.html);
+			info.open(map, this);
+		});
+
 	}
 }
 

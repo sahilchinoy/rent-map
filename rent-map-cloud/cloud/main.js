@@ -1,4 +1,8 @@
 Parse.Cloud.afterSave("Residence", function(request) {
+
+    //Only attempt geocoding if address was not autocompleted
+    if (!(request.object.get("formattedAddress"))) {
+
     var address = request.object.get("address"); 
 
     var update = function(lat,lng,formattedAddress) {
@@ -52,5 +56,7 @@ Parse.Cloud.afterSave("Residence", function(request) {
             console.error('Request failed with response code ' + httpResponse.status);
         }
     });
+
+    }
   
 });
